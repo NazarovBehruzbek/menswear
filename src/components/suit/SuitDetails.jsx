@@ -23,7 +23,7 @@ export default function SuitDetails() {
             if (!id) return;
             setLoading(true);
             try {
-                const response = await axios.get(`https://testaoron.limsa.uz/api/product?id=${id}`);
+                const response = await axios.get(`https://testaoron.limsa.uz/api/product=${id}`);
                 setSelectedSuit(response.data.data);
             } catch (err) {
                 console.error("❌ Fetch error:", err.response?.data || err.message);
