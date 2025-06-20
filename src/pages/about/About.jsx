@@ -1,6 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { API } from '../../api/API';
 
 export default function About() {
+const [user,setUser] = useState([]);
+
+const fetchUser = async (data) => {
+try{
+const res = await API.get("/team-section",data)
+setUser(res.data.data)
+}
+catch(error){
+console.log(error);
+}
+}
+useEffect(()=>{
+fetchUser()
+},[])
+
 return (
 <main>
   <section className='bg-neutral-50 py-10 border-b'>
@@ -124,71 +140,88 @@ return (
     <div className="container mx-auto px-4 text-center">
       <div className="max-w-[750px] mx-auto">
         <h2 className='heading-md text-[34px] mb-6 text-white'>
-        Our Mission
+          Our Mission
         </h2>
         <p className='text-[20px] font-[400] text-white  leading-relaxed'>
-        To create exceptional menswear that empowers men to look and feel their best, while maintaining a commitment to quality, sustainability, and ethical practices.
+          To create exceptional menswear that empowers men to look and feel their best, while maintaining a commitment
+          to quality, sustainability, and ethical practices.
         </p>
       </div>
     </div>
   </section>
   <section className='py-16 md:py-24'>
     <div className="container mx-auto px-4">
-      <h2 className='heading-md mb-10 text-center'>
-      Our Values
+      <h2 className='heading-md mb-10 text-[30px] font-[500] text-center'>
+        Our Values
       </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center space-y-4 p-6 transition-all hover:bg-secondary/50 rounded-lg">
-            <div className="w-12 h-12 mx-auto bg-[#e0e0e0] rounded-full flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx={12} cy={12} r={10} ></circle>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="text-center space-y-4 p-6 transition-all hover:bg-secondary/50 rounded-lg">
+          <div className="w-12 h-12 mx-auto bg-[#e0e0e0] rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx={12} cy={12} r={10} />
             </svg>
-            </div>
-            <h3 className='text-lg font-medium'>
+          </div>
+          <h3 className='text-lg font-medium'>
             Quality First
-            </h3>
-            <p className='text-muted-foreground'>
-            We never compromise on quality. From fabrics to construction, every element is carefully chosen for excellence.
-            </p>
-          </div>
-          <div className="text-center space-y-4 p-6 transition-all hover:bg-secondary/50 rounded-lg">
-           <div className="w-12 h-12 mx-auto bg-[#e0e0e0] rounded-full flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx={12} cy={12} r={10} ></circle>
-            </svg>
-            </div>
-            <h3 className='text-lg font-medium'>
-            Sustainability
-            </h3>
-            <p className='text-muted-foreground'>
-            We're committed to reducing our environmental impact through responsible sourcing and sustainable practices.
-            </p>
-          </div>
-          <div className="text-center space-y-4 p-6 transition-all hover:bg-secondary/50 rounded-lg">
-            <div className="w-12 h-12 mx-auto bg-[#e0e0e0] rounded-full flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx={12} cy={12} r={10} ></circle>
-            </svg>
-            </div>
-            <h3 className='text-lg font-medium'>
-            about.card3.title
-            </h3>
-            <p className='text-muted-foreground'>
-            about.card3.subtitle
-            </p>
-          </div>
+          </h3>
+          <p className='text-muted-foreground'>
+            We never compromise on quality. From fabrics to construction, every element is carefully chosen for
+            excellence.
+          </p>
         </div>
+        <div className="text-center space-y-4 p-6 transition-all hover:bg-secondary/50 rounded-lg">
+          <div className="w-12 h-12 mx-auto bg-[#e0e0e0] rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx={12} cy={12} r={10} />
+            </svg>
+          </div>
+          <h3 className='text-lg font-medium'>
+            Sustainability
+          </h3>
+          <p className='text-muted-foreground'>
+            We're committed to reducing our environmental impact through responsible sourcing and sustainable practices.
+          </p>
+        </div>
+        <div className="text-center space-y-4 p-6 transition-all hover:bg-secondary/50 rounded-lg">
+          <div className="w-12 h-12 mx-auto bg-[#e0e0e0] rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx={12} cy={12} r={10} />
+            </svg>
+          </div>
+          <h3 className='text-lg font-medium'>
+            about.card3.title
+          </h3>
+          <p className='text-muted-foreground'>
+            about.card3.subtitle
+          </p>
+        </div>
+      </div>
     </div>
   </section>
   <section className='py-16 bg-secondary'>
     <div className="container mx-auto px-4">
-      <h2 className='heading-md mb-10 text-center text-2xl'>
-      Our Team
+      <h2 className='heading-md mb-10 text-center font-[500] text-[30px] '>
+        Our Team
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="">
-
+        {
+        user.map((item,index)=>(
+        <div key={index.id} className="text-center space-y-3">
+          <div className="aspect-square overflow-hidden rounded-full max-w-[200px] mx-auto">
+            <img className='w-full h-full object-cover' src={`https://testaoron.limsa.uz/${item.image}`} alt="Avatar" />
           </div>
+          <h3 className='font-medium text-lg'>
+            {item.full_name}
+          </h3>
+          <p className='text-muted-foreground'>
+            {item.position_en}
+          </p>
+        </div>
+        ))
+        }
       </div>
     </div>
   </section>
