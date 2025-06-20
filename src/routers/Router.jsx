@@ -5,8 +5,7 @@ import About from "../pages/about/About";
 import Contact from "../pages/contact/Contact";
 import Home from "../components/home/Home";
 import Catalog from "../pages/catalog/Catalog";
-import SuitDetails from './../components/suit/SuitDetails';
-
+import SuitDetails from "../components/suit/SuitDetails"
 export const Router = createBrowserRouter([
     {
         path: "/",
