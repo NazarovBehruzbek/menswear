@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../../public/logoAoron.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 export default function Footer() {
   return (
     <>
@@ -8,9 +8,11 @@ export default function Footer() {
         <div className="pt-10 bg-gray-200">
           <div className="container m-auto grid grid-cols-4 gap-8">
             <div className="space-y-4">
+            <Link to="/">
               <div className="w-20 mb-4">
                 <img src={logo} alt="logo" />
               </div>
+              </Link>
               <p className="text-sm text-gray-500 text-muted-foreground ">
                 Premium quality menswear focused on exceptional materials and
                 perfect fit.

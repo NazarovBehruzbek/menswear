@@ -5,14 +5,15 @@ import 'swiper/css';
 import 'swiper/css/thumbs';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import { CartStore } from "../../store/CartStore"; 
+import { CartStore } from "../../store/CartStore";
+import { API } from "../../api/API";
 
 export default function SuitDetails() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
     const [loading, setLoading] = useState(false);
     const [quantity, setQuantity] = useState(1);
     const [selectedSuit, setSelectedSuit] = useState(null);
-    const addToCart=CartStore((state)=>state.addToCart);
+    const { addToCart, cartItems } = CartStore();
     const { id } = useParams();
 
     const decrement = () => quantity > 1 && setQuantity(q => q - 1);
@@ -23,7 +24,7 @@ export default function SuitDetails() {
             if (!id) return;
             setLoading(true);
             try {
-                const response = await axios.get(`https://testaoron.limsa.uz/api/product=${id}`);
+                const response = await API.get(`/product/${id}`);
                 setSelectedSuit(response.data.data);
             } catch (err) {
                 console.error("❌ Fetch error:", err.response?.data || err.message);
@@ -46,6 +47,7 @@ export default function SuitDetails() {
         min_sell,
         sizes
     } = selectedSuit;
+    console.log(cartItems);
 
     return (
         <div className="flex flex-col px-4 py-6">
@@ -132,19 +134,19 @@ export default function SuitDetails() {
                                 id: selectedSuit.id,
                                 title: selectedSuit.title_en,
                                 price: selectedSuit.price,
-                                image: selectedSuit.images?.[0],  
+                                image: selectedSuit.images?.[0],
                                 quantity,
                             };
                             addToCart(cartItem);
                             alert("Item added to cart!");
-                      }}
-                    
+                        }}
+
                     >
                         Add to cart
                     </button>
                 </div>
             </div>
-            
+
         </div>
 
 
